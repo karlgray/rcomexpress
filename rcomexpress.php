@@ -591,7 +591,6 @@ function rcomexpress_TransferDomain($params) {
 ########################################################################
 # Transfer in a domain name. 
 ########################################################################    
-	require ROOTDIR . "/includes/countriescallingcodes.php";
 	$tld = $params["tld"];
 	$sld = $params["sld"];
 	$domain = $sld . "." . $tld;
@@ -606,12 +605,9 @@ function rcomexpress_TransferDomain($params) {
 		$adminstate = rcomexpress_convert_us_state($params["adminstate"]);
 		}
 
-	### Does this work in all cases?  Test before use on UK numbers,  think this needs a lot more work, smells bad.
-	$RegistrantPhone = "+" . $countrycallingcodes[$params["country"]] . "." . preg_replace("/[^0-9]/", "", $params["phonenumber"]);
-	$AdminPhone = "+" . $countrycallingcodes[$params["admincountry"]] . "." . preg_replace("/[^0-9]/", "", $params["adminphonenumber"]);
-	####
-
-
+	$RegistrantPhone = rcomexpress_FormatPhoneNumber($params["country"], $params["phonenumber"]);
+	$AdminPhone = rcomexpress_FormatPhoneNumber($params["admincountry"], $params["adminphonenumber"]);
+	
 	#Start Building XML
 	$xml = new DOMDocument();
 	$root = $xml->createElement("serviceRequest");
