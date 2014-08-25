@@ -1,17 +1,6 @@
 <?php
-
-# (c) Copyright Karl Gray 2014
-#
-# This is a rough module for register.com API access for WHMCS
-# There is no error checking and minimal validation of incoming data as it is 
-# assumed that WHMCS will have pre-sanitised input before passing it to 
-# us.  Errors reported back from the registrar are passed to whmcs if 
-# available.
-#
 # This is a work in progress, is very rough and should NOT be used in 
 # a production setting.  I am still working on it and tidying up code.
-# 
-# Currently relased under GPLv2.
 
 function rcomexpress_getConfigArray() {
 	$configarray = array( 
